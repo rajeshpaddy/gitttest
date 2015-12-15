@@ -1,3 +1,4 @@
+##Usage python helloworld.py <your name>
 import sys
 
 def main():
