@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+            <script>
+        
+        function generateRandom()
+        {
+            var coloritems=["blue","green","cyan","indigo"];
+            var element = document.getElementById("spanitem");
+            var randomnumber=Math.floor(Math.random()*4);
+            element.textContent=randomnumber;
+            document.getElementById("thebody").style.background=coloritems[randomnumber];
+            
+     }
+    </script>   
+     <title>Test</title>
+     <meta http-equiv="refresh" content="1">   
+    </head>
+    <body id="thebody" onload="generateRandom();">
+        
+    <p> this is test <span id="spanitem"></span> 
+</p>
+  
+    </body> 
+</html>
