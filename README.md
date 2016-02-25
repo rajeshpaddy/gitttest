@@ -1,6 +1,5 @@
 ```
 Python
 ```
-========
 This is the hello world app for learning Python
-and using to make minor edits 
+new line is added to support hot fix
