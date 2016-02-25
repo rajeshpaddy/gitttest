@@ -4,3 +4,15 @@ git merge [merges to the current branch]
 
 git branch -vv [what remote branch is my local branch tracking to]
 
+git remote -v [origin URL]
+
+git checkout -b python origin/python [work on a dev branch, tracking to a remote branch]
+
+git branch -r [list out remote branches]
+
+git push -u origin readme [push the current changes to particular origin]
+
+git push origin --delete readme [delete remote branches]
+
+git rebase master [rebases the current branch to this branch, so all the changes in that branch are replayed to my branch]
+
