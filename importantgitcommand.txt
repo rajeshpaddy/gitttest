@@ -1,6 +1,6 @@
 git log --oneline --graph --decorate [Commit tree with branch annotation]
 
-git merge [merges to the current branch]
+git merge [merges to the current branch and commits] 
 
 git branch -vv [what remote branch is my local branch tracking to]
 
@@ -14,5 +14,7 @@ git push -u origin readme [push the current changes to particular origin]
 
 git push origin --delete readme [delete remote branches]
 
-git rebase master [rebases the current branch to this branch, so all the changes in that branch are replayed to my branch]
-
+Scenario(branch) - I have a change and I want to share this change with a team member 
+Scenario(hotfix) - I have a change to be made in master - a hot fix
+Scenario(rebase) - I want to bring the hot fix I did in master back to my current working branch
+Scenario(merge)  - I have made changes to my local and want to merge to master. 
