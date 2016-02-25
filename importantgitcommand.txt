@@ -1,0 +1,6 @@
+git log --oneline --graph --decorate [Commit tree with branch annotation]
+
+git merge [merges to the current branch]
+
+git branch -vv [what remote branch is my local branch tracking to]
+
