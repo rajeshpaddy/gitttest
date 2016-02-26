@@ -14,6 +14,10 @@ git push -u origin readme [push the current changes to particular origin]
 
 git push origin --delete readme [delete remote branches]
 
+git revert <commit hash> [Revert the following commit by undoing the changes and commiting, the history is presevered]
+
+git reset <commit hash> [Revert all the way to the commit hash and all the subsequent commits. This removes the history]
+
 Scenario(branch) - I have a change and I want to share this change with a team member 
 Scenario(hotfix) - I have a change to be made in master - a hot fix
 Scenario(rebase) - I want to bring the hot fix I did in master back to my current working branch
