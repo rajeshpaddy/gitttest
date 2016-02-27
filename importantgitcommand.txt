@@ -23,6 +23,10 @@ git stash [save the working progress items and goes to HEAD]
 git stash pop/show/list
 
 git show --pretty="format:" --name-only 2107403 [list of files in a commit]
+
+git cherry-pick <commit hash> [pick an commit and replay it]
+
+git clean -f -d [delete the current workspace forcefull]
 Scenario(branch) - I have a change and I want to share this change with a team member 
 Scenario(hotfix) - I have a change to be made in master - a hot fix
 Scenario(rebase) - I want to bring the hot fix I did in master back to my current working branch
