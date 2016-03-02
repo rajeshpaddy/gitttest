@@ -1,0 +1,5 @@
+bootstrap classes
+	jumbotron for headers
+	container 
+	row
+	
