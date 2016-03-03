@@ -2,4 +2,8 @@ bootstrap classes
 	jumbotron for headers
 	container 
 	row
+Responsive web design
+	Grid 
+	Fluid
+	Media query
 	
