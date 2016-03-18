@@ -1,0 +1,33 @@
+git log --oneline --graph --decorate [Commit tree with branch annotation]
+
+git merge [merges to the current branch and commits] 
+
+git branch -vv [what remote branch is my local branch tracking to]
+
+git remote -v [origin URL]
+
+git checkout -b python origin/python [work on a dev branch, tracking to a remote branch]
+
+git branch -r [list out remote branches]
+
+git push -u origin readme [push the current changes to particular origin]
+
+git push origin --delete readme [delete remote branches]
+
+git revert <commit hash> [Revert the following commit by undoing the changes and commiting, the history is presevered]
+
+git reset <commit hash> [Revert all the way to the commit hash and all the subsequent commits. This removes the history]
+
+git stash [save the working progress items and goes to HEAD]
+
+git stash pop/show/list
+
+git show --pretty="format:" --name-only 2107403 [list of files in a commit]
+
+git cherry-pick <commit hash> [pick an commit and replay it]
+
+git clean -f -d [delete the current workspace forcefull]
+Scenario(branch) - I have a change and I want to share this change with a team member 
+Scenario(hotfix) - I have a change to be made in master - a hot fix
+Scenario(rebase) - I want to bring the hot fix I did in master back to my current working branch
+Scenario(merge)  - I have made changes to my local and want to merge to master. 

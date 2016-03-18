@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dating Website</title>
+			<style>
+			span {width :100px}
+			legend {font-size:14px;font-weight:bold;}
+			fieldset {border:solid;border-color:green;border-size:15;background-color:cyan;width:40%;}
+			label:hover {font-size:20px;}
+		</style>
+	</head>
+	<body>
+		<p style=font-size:20px><b>Please Enter Your Details For Our Dating Website!</b></p>
+		<fieldset >
+			<legend >Your Face</legend>
+			<label style=text-align:"center">Your image<input type="file" name="fileupload" value="Choose File"></label>
+		</fieldset>
+
+		<fieldset ;>
+			<legend>Your General Details</legend>
+			
+			<table>
+				<tr>	
+					<td><label>Name:</label></td>
+					<td><input type="text" name="fullname" placeholdervalue ="Your full name" value=""></td>
+				</tr>
+				<tr>
+					<td><label>Gender:</label></td>
+					<td><label>Male<input type="radio" name="gender" value="Male"></label>
+						<label>Female<input type="radio" name="gender" value="Female"></label></td>
+				</tr>
+				<tr>
+						<td><label>Age:</label></td>
+						<td><input type="number" name="age" value="" style=width:25%;align=left></td>
+				</tr>
+				<tr>
+						<td><label>Date of birth:</label></td>
+						<td><input type="date" name="dob" value=""></td>
+				</tr>
+				<tr>
+						<td><label>Favourite color:</label></td>
+						<td><input type="color" name="favcolor" value="red"></td>
+				</tr>
+				<tr>
+						<td><label>Which country:</label></td>
+						<td><select name="country" >
+							<option value="USA">USA</option>
+							<option value="Canada">Canada</option>
+							<option value="Mexico">Mexico</option>
+						</select>
+						</td>
+				</tr>
+			</table>
+
+		</fieldset>
+		<fieldset style=;>
+			<legend>Your Indicators</legend>
+			<table>
+				<tr>
+					<td><label>Height:</label></td> <td><span style=background-color:Maroon;color:white;display:block;text-align:center>Short</span></td><td><input min=4 max=8 type="range" name="height" value="6" placeholder=""></td><td>
+					<span style=background-color:purple;color:white;display:block;text-align:center> Tall</span></td>
+				</tr>
+				<tr><td>
+					<label>Salary:</label></td><td><span style=background-color:Maroon;color:white;display:block;text-align:center>Poor</span></td><td><input min=50000 max=300000 type="range" name="salary" value="175000" placeholder=""></td>
+					<td><span style=background-color:purple;color:white;display:block;text-align:center> Rich</span></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset style=border-size:3px;>
+			<legend>Your contact information</legend>
+			<table>
+				<tr>
+					<td><label>Email:</label></td><td><input type="text" name="email" value="" placeholder=""></td>
+				</tr>
+				<tr>
+					<td><label>Mobile:</label></td><td><input type="text" name="email" value="" placeholder=""></td>
+				</tr>
+				<tr>
+					<td><label>Address:</label></td><td><textarea name="address" placeholder="Enter your address here" rows=5></textarea></td>
+				</tr>
+				<tr>
+					<td><label>Method to contact you:</label></td>
+					<td><label>email</label><input type="radio" name="contactmethod" value="email">
+						<label>whatsapp</label><input type="radio" name="contactmethod" value="whatsapp">
+						<label>in-app chat</label><input type="radio" name="contactmethod" value="in-app-chat">
+					</td>
+				</tr>
+			</table>
+			<input type="submit" name="" value="Submit">
+		</fieldset>
+	</body>
+</html>
