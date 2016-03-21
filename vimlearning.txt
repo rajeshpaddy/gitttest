@@ -1,0 +1,5 @@
+I did the vimtutor today. VIM-stands for vi improved is a productive text editor. It is really fun to work with the vim editor. 
+
+Navigation
+	hjkl are the navigation key
+	
