@@ -19,6 +19,17 @@ def find_angle(hour,minute):
 	minute_angle = 6*int(minute)
 	return min(360-abs(hour_angle-minute_angle),abs(hour_angle-minute_angle))
 	
+def fetch_words():
+    from urllib.request import urlopen
+    with urlopen('http://sixty-north.com/c/t.txt') as story:
+        story_words=[]
+        for line in story:
+            line_words=line.decode('utf-8').split()
+            for words in line_words:
+                story_words.append(words)
+            for word in story_words:
+                print(word)
+				
 def print_arg(url):
 	"""
 	print_arg(arl)
