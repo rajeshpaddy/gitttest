@@ -1,6 +1,24 @@
 import sys
 from time import time
 from datetime import datetime as dt
+def find_angle(hour,minute):
+	"""
+	function that returns the angle between the hour and minute handle of the clock
+	args
+		hour
+		minute
+	return
+		finds the angle between the hour and the minute handle of a clock
+		
+	"""
+#	if hour== 12 and minute==00 :
+#		return 0   
+	hour_angle_h = 30*int(hour)
+	hour_angle_m = int(minute)/2 # for every minute, there is .5 degree displacement in hour needle
+	hour_angle = hour_angle_h + hour_angle_m
+	minute_angle = 6*int(minute)
+	return min(360-abs(hour_angle-minute_angle),abs(hour_angle-minute_angle))
+	
 def print_arg(url):
 	"""
 	print_arg(arl)
