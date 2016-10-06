@@ -1,6 +1,15 @@
 import sys
 from time import time
 from datetime import datetime as dt
+import math
+
+def is_prime(x):
+    for i in range(2,int(math.sqrt(x))+1):
+    	# print(i)	
+    	if x%i==0:	
+    		return False
+    return True
+
 def find_angle(hour,minute):
 	"""
 	function that returns the angle between the hour and minute handle of the clock
@@ -29,7 +38,7 @@ def fetch_words():
                 story_words.append(words)
             for word in story_words:
                 print(word)
-				
+
 def print_arg(url):
 	"""
 	print_arg(arl)
