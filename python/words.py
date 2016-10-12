@@ -1,7 +1,105 @@
 import sys
+from termcolor import colored,cprint
 from time import time
 from datetime import datetime as dt
+
 import math
+
+def print_MxN_matrix(m,n,color):
+    
+    if (m>9 or n>17):
+        cprint("The screen allows to print a max matrix of 9X17","red")
+        return 
+    matrix = list([])
+    for i in range(1,m+1):
+        for j in range(1,n+1):
+            matrix.append([i,j])
+
+    print(2*"\n")
+    rowbuffer=""    
+    row="|"
+    rowlen=0
+
+    for i in range(0,(m*n)):
+        row+=colored(str(matrix[i][0])+":"+str(matrix[i][1]),color) + "|"
+        if (i in range(n-1,m*n+1,n)):
+            rowlen=n*4+1
+            if n>=10:
+                rowlen+=n-10+1        
+            rowbuffer+="-"*rowlen+"\n"
+            rowbuffer+=row+"\n"
+            row="|"
+    rowbuffer+="-"*rowlen
+    print(rowbuffer)
+    
+        
+    
+def string_replace(s,replace_with):
+    '''
+    function to replace a " " character in string with another character
+    args
+    s:string to be searched for " " and replace with <replacewith>
+    replace_with: the string to be replaced with
+    '''
+    h=""
+    for c in s:
+        if c==" ":
+            h+=replace_with
+        else:
+            h+=c
+    return h
+
+def is_uniquecharacters(s,sensitivity="CI"):
+
+    '''
+    [With Data Structure]
+    function to determine if all the characters in the string are unique
+    args
+        s:string to search for unique characters
+        sensitivity:case sensitive or insensitive search (CI or CS)
+    '''
+    tempstore=dict()
+    if sensitivity=="CI":
+        s=str(s).upper()
+    for _ in s:
+        if _ in tempstore.keys():
+            print("One of the duplicate key is ", tempstore[_])
+            return False
+        else:
+            tempstore[_] = _ 
+    return True
+
+def is_uc_loop(s):
+    '''
+    [Without Data Structure] 
+    function to determine if all the characters in the string are unique
+    args
+        s:string to search for unique characters
+        sensitivity:case sensitive or insensitive search (CI or CS)
+    '''
+    i=0
+    j=0
+    for _ in s:
+        i+=1
+        for a in s:
+            j+=1
+            if _==a and i!=j: 
+                print("One of the duplicate key is ", _)
+                return False  
+        j=0   
+    return True
+    
+
+def analyse_file(filename):
+    try:
+        file=open(filename,"rt")
+        file_length=len(file.read())
+        # file_word_count=[sum(1) for x in file.readline().split()]
+        # file.seek(0)
+        file_line_count=[sum(1) for x in file]
+    finally:
+        file.close()
+
 def is_prime(x):
     for i in range(2,int(math.sqrt(x))+1):
         if x%i==0:	
