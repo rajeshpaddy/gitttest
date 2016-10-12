@@ -4,34 +4,38 @@ from time import time
 from datetime import datetime as dt
 
 import math
-
+error_color="red"
 def print_MxN_matrix(m,n,color):
     
-    if (m>9 or n>17):
-        cprint("The screen allows to print a max matrix of 9X17","red")
-        return 
-    matrix = list([])
-    for i in range(1,m+1):
-        for j in range(1,n+1):
-            matrix.append([i,j])
+    try:
+        if (m>9 or n>17):
+            raise ValueError('OutofBoundMatrix')
+            return 
+        matrix = list([])
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                matrix.append([i,j])
 
-    print(2*"\n")
-    rowbuffer=""    
-    row="|"
-    rowlen=0
+        print("\n")
+        rowbuffer=""    
+        row="|"
+        rowlen=0
 
-    for i in range(0,(m*n)):
-        row+=colored(str(matrix[i][0])+":"+str(matrix[i][1]),color) + "|"
-        if (i in range(n-1,m*n+1,n)):
-            rowlen=n*4+1
-            if n>=10:
-                rowlen+=n-10+1        
-            rowbuffer+="-"*rowlen+"\n"
-            rowbuffer+=row+"\n"
-            row="|"
-    rowbuffer+="-"*rowlen
-    print(rowbuffer)
-    
+        for i in range(0,(m*n)):
+            row+=colored(str(matrix[i][0])+":"+str(matrix[i][1]),color) + "|"
+            if (i in range(n-1,m*n+1,n)):
+                rowlen=n*4+1
+                if n>=10:
+                    rowlen+=n-10+1        
+                rowbuffer+="-"*rowlen+"\n"
+                rowbuffer+=row+"\n"
+                row="|"
+        rowbuffer+="-"*rowlen
+        print(rowbuffer)
+    except ValueError as e:   
+        print(colored("Incorrect input caused Error <<{0}>>:".format(e),error_color)+"The screen allows to print a max matrix of 9X17")
+    except:
+        print(colored("Error <<Unknown>>:",error_color)+"some error occured, most likely incorrect color")
         
     
 def string_replace(s,replace_with):
