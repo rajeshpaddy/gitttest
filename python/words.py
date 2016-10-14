@@ -5,6 +5,49 @@ from datetime import datetime as dt
 
 import math
 error_color="red"
+
+class hex:
+    def picture(size):
+        k=hex.hex_print(size)
+        for i in k:
+            print(i)
+        
+    def hex_print(size):
+        hex=[" _","/ \\","\\_/"]
+        
+        hex_width=list()
+        return_list=list()
+        shift_hex_by_spaces=2
+
+
+        for i in range(0,size):
+            hex_width.append(-1*i)
+        
+        # print(hex_width)
+        for i in range(0,size*3):
+            return_list.append("")
+            for j in range(0,len(hex_width)):
+                if hex_width[j]==0:
+                    return_list[len(return_list)-1]+=hex[0]
+                elif hex_width[j]%2==1 and hex_width[j]<=size*2 and hex_width[j]>0:
+                    return_list[len(return_list)-1]+=hex[1]
+                elif hex_width[j]%2==0 and hex_width[j]<=size*2 and  hex_width[j]>0:
+                    return_list[len(return_list)-1]+=hex[2]
+                hex_width[j]+=1    
+        
+            # can be improved to do this work in line
+            return_list[len(return_list)-1]=return_list[len(return_list)-1].replace("//","/")
+            return_list[len(return_list)-1]=return_list[len(return_list)-1].replace("\\\\","\\")
+            if(len(return_list)>1):
+                return_list[len(return_list)-1]=return_list[len(return_list)-1].replace(" _","_")
+        
+            # #add leading space to shift the hex to right
+            if(size*3-i<size):
+                return_list[len(return_list)-1]=" "*shift_hex_by_spaces+return_list[len(return_list)-1]
+                shift_hex_by_spaces+=2
+            
+        return return_list
+
 def print_MxN_matrix(m,n,color):
     
     try:
