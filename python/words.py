@@ -7,45 +7,91 @@ import math
 error_color="red"
 
 class hex:
-    def picture(size):
-        k=hex.hex_print(size)
+    def picture(size,markers=[],print_color="red"):
+        '''
+        this function call the hex_print function and prints the hexagon grid with markers  
+        '''
+        k=hex.hex_print(size,markers,print_color)
         for i in k:
             print(i)
         
-    def hex_print(size):
-        hex=[" _","/ \\","\\_/"]
+    def hex_print(size,markers=[],print_color="red"):
+        '''
+        [linear implementation]
+        this function prints a diagnol hexagon grid and places the markers with in the specified hexagon
+        args
+        size: the n*n hexagon matrix. 
+        markers: list of string with values on where the markers has to be places. For example ["00v","11h"] will place the v market on the 0,0 cell and h marker on the 1,1 cell 
+        '''
         
+        hex_parts=[" _","/"+colored({0},print_color)+"\\","\\_/"]
+
+        marker=" "
+        # state machine 
         hex_width=list()
+        hex_height=list()
+
+        #return result
         return_list=list()
-        shift_hex_by_spaces=2
+        loops=0
+        markers_hash=dict()
 
+        # place the markers in a hash map for quick access
+        for l in markers:
+            loops+=1
+            if(len(l)==3):
+                markers_hash[l[0:1]+"-"+l[1:2]]=l[2:3]
 
+        # seeding the state machine with initializers
         for i in range(0,size):
-            hex_width.append(-1*i)
+            loops+=1
+            hex_width.append(-1*i) #state to determine which Hex part has to be placed
+            hex_height.append(-1) # state to determine when to place the markers inside hex part (1)
         
-        # print(hex_width)
-        for i in range(0,size*3):
-            return_list.append("")
-            for j in range(0,len(hex_width)):
-                if hex_width[j]==0:
-                    return_list[len(return_list)-1]+=hex[0]
-                elif hex_width[j]%2==1 and hex_width[j]<=size*2 and hex_width[j]>0:
-                    return_list[len(return_list)-1]+=hex[1]
-                elif hex_width[j]%2==0 and hex_width[j]<=size*2 and  hex_width[j]>0:
-                    return_list[len(return_list)-1]+=hex[2]
-                hex_width[j]+=1    
+
+        for i in range(0,size*3*len(hex_width)):
+            loops+=1
+
+            j=i%size # state for new lines
+            
+            if j==0:
+                return_list.append("") # new line 
+            
+            if hex_width[j]==0:
+                return_list[len(return_list)-1]+=hex_parts[0]
+
+            elif hex_width[j]%2==1 and hex_width[j] in range(1,size*2+1,1):
+                hex_height[j]+=1 # increment the row for the corresponding hex column
+                
+                # check if a marker has to be placed and then get the marker
+                find_key= str(hex_height[j])+"-"+str(j) 
+                if(find_key in markers_hash):
+                    marker = markers_hash[find_key]
+                
+                return_list[len(return_list)-1]+=hex_parts[1].format(marker) #place the marker
+                marker=" "
+
+            elif hex_width[j]%2==0 and hex_width[j] in range(1,size*2+1,1):
+                return_list[len(return_list)-1]+=hex_parts[2]
+            hex_width[j]+=1    
         
             # can be improved to do this work in line
             return_list[len(return_list)-1]=return_list[len(return_list)-1].replace("//","/")
             return_list[len(return_list)-1]=return_list[len(return_list)-1].replace("\\\\","\\")
             if(len(return_list)>1):
                 return_list[len(return_list)-1]=return_list[len(return_list)-1].replace(" _","_")
-        
-            # #add leading space to shift the hex to right
-            if(size*3-i<size):
-                return_list[len(return_list)-1]=" "*shift_hex_by_spaces+return_list[len(return_list)-1]
-                shift_hex_by_spaces+=2
-            
+
+        # add leading space to shift the hex to right
+        for last_few_rows in range(1,size):
+            loops+=1
+            return_list[len(return_list)-last_few_rows]="  "*(size-last_few_rows)+return_list[len(return_list)-last_few_rows]
+
+        print (
+            str("total cost : \n reading the markers " +colored({0},"white")+
+            ", \n initializing the width " + colored({1},"white")+ " of the grid matrix, \n 1 loop thru the grid matrix " + colored({2},"white")+ 
+            " and \n prettying the grid " + colored({3},"white") + 
+            "\n = " 
+            + colored({4},"white")).format(len(markers_hash),len(hex_width),size*3*len(hex_width),size-1,loops))
         return return_list
 
 def print_MxN_matrix(m,n,color):
