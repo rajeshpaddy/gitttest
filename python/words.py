@@ -6,7 +6,32 @@ from datetime import datetime as dt
 import math
 error_color="red"
 
-class hex:
+class top_coder:
+    
+    def tokenize(string,tokens):
+        '''
+        function that takes a string and returns a list of tokens found in the string.
+        args
+            string: the string on which the tokens have to be parsed for
+            token: list of legitimate tokens to be searched
+        returns
+            list of tokens found in the string
+        '''
+        return_tokens = list()
+        max_token_size=""
+        while (len(string)>0):
+            for tok in tokens:
+                if string[0:len(tok)]==tok and len(max_token_size)<len(tok):
+                    max_token_size=tok
+            if len(max_token_size)==0:
+                string=string[1:]
+            else:
+                return_tokens.append(max_token_size)
+                string=string[len(max_token_size):]
+                max_token_size=""
+        return return_tokens
+                
+        
     def picture(size,markers=[],print_color="red"):
         '''
         this function call the hex_print function and prints the hexagon grid with markers  
