@@ -8,6 +8,59 @@ error_color="red"
 
 class top_coder:
     
+    class linked_list:
+        def __init__(self, data=None,next_node=None):
+            self.data=data
+            self.next_node = next_node
+            self.head=self
+        def get_next(self):
+            return self.next_node
+        
+        def get_data(self):
+            return self.data
+
+        def set_next(self,next_node):
+            while(self.next_node is not None):            
+                self = self.next_node
+            self.next_node = next_node
+
+        def search(self,data):
+            while (self.data!=data or self is None):
+                self=self.next_node
+            return self
+
+        def print(self):
+            while (self is not None):
+                print(str(self.data) + "-->")
+                self=self.next_node             
+        def delete(self,data):
+            if (self.data == data): # special case for head node
+                print(self.data)
+                self=self.head.next_node
+                self.head=self
+                return self
+            else:
+                prev_node=top_coder.linked_list()
+                while(self is not None and self.data!=data):
+                    prev_node=self
+                    self=self.next_node
+                if (self is not None):
+                    prev_node.next_node = self.next_node
+    
+    def calculate_waste(files,folder_count,cluster_size):
+        hash = dict()
+        return_value =[]
+        file_id = -1
+        for file in files:
+            file_id = file.split()[0]
+            if file_id in hash.keys():
+                hash[file_id]+=int(file.split()[1])
+            else:
+                hash[file_id]=int(file.split()[1])
+        for i in sorted(hash):
+            return_value.append(cluster_size-hash[i]%cluster_size)
+        return tuple(return_value)
+
     def tokenize(string,tokens):
         '''
         function that takes a string and returns a list of tokens found in the string.
@@ -36,7 +89,7 @@ class top_coder:
         '''
         this function call the hex_print function and prints the hexagon grid with markers  
         '''
-        k=hex.hex_print(size,markers,print_color)
+        k=top_coder.hex_print(size,markers,print_color)
         for i in k:
             print(i)
         
