@@ -2,17 +2,60 @@ import sys
 from termcolor import colored,cprint
 from time import time
 from datetime import datetime as dt
-
+import random as rand
 import math
 error_color="red"
 
 class top_coder:
     
+    class sorting:
+        glob=0
+
+        def printsort(sortlist):
+            top_coder.sorting.glob=0
+            result = top_coder.sorting.quicksort(sortlist)
+            return_list =[]
+            for i in result.split("-"):
+                if(i!="-" and len(i)>0):
+                    return_list.append(int(i))
+            return (top_coder.sorting.glob,int(math.pow(len(sortlist),2)),return_list)
+
+
+        def quicksort(sortlist):
+            
+            if len(sortlist)==1:
+                
+                return str(sortlist[0])+"-"
+
+            elif len(sortlist)>1:
+                r=int(rand.random()*len(sortlist))
+                left=[]
+                right=[]
+                position=0
+
+                for i in sortlist:
+                    top_coder.sorting.glob+=1
+                    if i<sortlist[r]:
+                        left.append(i)
+                    elif i>=sortlist[r] and position!=r:
+                        right.append(i)
+                    position+=1
+                returnlist=""
+                if len(left)>0:
+                    le=top_coder.sorting.quicksort(left)
+                    returnlist=str(le)+"-"
+                returnlist+=str(sortlist[r])+"-"
+                if len(right)>0:
+                    ri=top_coder.sorting.quicksort(right)
+                    returnlist+=str(ri)+"-"
+                return returnlist
+
     class linked_list:
         def __init__(self, data=None,next_node=None):
             self.data=data
             self.next_node = next_node
             self.head=self
+
         def get_next(self):
             return self.next_node
         
