@@ -28,19 +28,20 @@ class top_coder:
                 return str(sortlist[0])+"-"
 
             elif len(sortlist)>1:
-                r=int(rand.random()*len(sortlist))
-                left=[]
-                right=[]
+                r=int(rand.random()*len(sortlist)) # get an arbitary position
+                left=[] # left bucket
+                right=[] # right bucket
                 position=0
 
                 for i in sortlist:
                     top_coder.sorting.glob+=1
-                    if i<sortlist[r]:
+                    if i<sortlist[r]: 
                         left.append(i)
                     elif i>=sortlist[r] and position!=r:
                         right.append(i)
                     position+=1
-                returnlist=""
+                returnlist="" # conquer using the return list
+                
                 if len(left)>0:
                     le=top_coder.sorting.quicksort(left)
                     returnlist=str(le)+"-"
