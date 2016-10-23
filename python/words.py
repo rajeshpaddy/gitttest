@@ -11,6 +11,44 @@ class top_coder:
     class sorting:
         glob=0
 
+        def mergesort(sortlist):
+            if len(sortlist)>1:
+                middle_point = int(len(sortlist)/2)
+         
+                leftlist = top_coder.sorting.mergesort(sortlist[:middle_point])
+                rightlist= top_coder.sorting.mergesort(sortlist[middle_point:])
+                
+                i=0 #left iterator
+                j=0 #right iterator
+                k=0 #original list iterator
+
+                while(i<len(leftlist) and j<len(rightlist)):
+                    if leftlist[i]<rightlist[j]:
+                        sortlist[k]=leftlist[i]
+                        i+=1
+                    else:
+                        sortlist[k]=rightlist[j]
+                        j+=1
+                    k+=1
+                
+                while(i<len(leftlist)):
+                    sortlist[k]=leftlist[i]
+                    i+=1
+                    k+=1
+                
+                while (j<len(rightlist)):
+                    sortlist[k]=rightlist[j]
+                    j+=1
+                    k+=1
+                
+            return sortlist
+
+
+        def printsort_lean(sortlist):
+            top_coder.sorting.glob=0
+            result = top_coder.sorting.quicksort_lean(sortlist,0,len(sortlist))
+            return result
+
         def printsort(sortlist):
             top_coder.sorting.glob=0
             result = top_coder.sorting.quicksort(sortlist)
@@ -18,8 +56,34 @@ class top_coder:
             for i in result.split("-"):
                 if(i!="-" and len(i)>0):
                     return_list.append(int(i))
-            return (top_coder.sorting.glob,int(math.pow(len(sortlist),2)),return_list)
+            return ("BestCase="+str(top_coder.sorting.glob),"WorstCase="+str(int(math.pow(len(sortlist),2))),return_list)
 
+        def quicksort_lean(sortlist,left,right):
+            if left==right:
+                return sortlist
+            elif len(sortlist)>1:
+                if top_coder.sorting.glob>3000:
+                    print(top_coder.sorting.glob)
+                    print(sortlist)
+                    print("left",left)
+                    print("right",right)
+                    return sortlist
+                r=int((left+right)/2) # get an mid position
+                val=sortlist[r]
+                position=0   
+                for i in range(0,len(sortlist)):
+                    top_coder.sorting.glob+=1
+                    if (sortlist[i]<val and position>r) or (sortlist[i]>=val and position<r):
+                        temp=sortlist[position]
+                        sortlist[position]=val
+                        sortlist[r]=temp
+                        r=position
+                    position+=1
+                left=r
+                right=len(sortlist)
+                if right-left>0:
+                    top_coder.sorting.quicksort_lean(sortlist,0,left)
+                    top_coder.sorting.quicksort_lean(sortlist,left,right)
 
         def quicksort(sortlist):
             
@@ -41,7 +105,7 @@ class top_coder:
                         right.append(i)
                     position+=1
                 returnlist="" # conquer using the return list
-                
+
                 if len(left)>0:
                     le=top_coder.sorting.quicksort(left)
                     returnlist=str(le)+"-"
