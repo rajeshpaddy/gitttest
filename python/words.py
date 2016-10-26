@@ -13,14 +13,49 @@ class top_coder:
     queue = deque()
     print_color=["magenta","white","cyan"]
     
+    def binary_search(btree,data):
+        '''
+        binary_search - searchs a sorted balanced binary tree
+        
+        args
+            btree: root of the binary tree
+            data: data to search for
+        returns
+            attempts: # of attempts it took to find the data O(log N)
+        '''
+        attempt=1
+        while btree is not None:
+            if btree.data==data:
+                return ("total attempt",attempt)
+             
+            if btree.data<data: # if the data is greater then search right
+                btree=btree.right
+                print("Right")
+            else:    
+                btree=btree.left #else search left
+                print("Left")
+            attempt+=1
+            print("node:"+str(btree.data))
+                  
+            
     def dfs(btree):
+        '''
+        dfs - Traverse the tree "Depth first" and prints the node. The search is done 
+        using a list as stack. When a new parent node is hit it pushes the left and right node into 
+        a stack and then pop's the first node and treats it as parent node, this happens in recusive manner 
+        until there is no more node is left.
+        
+        args
+            btree: root node of the binary tree 
+        '''
         level=0
+        flatten_tree=list()
         while(btree is not None):
             if level==0:
                 linker=""
             else:
                 linker="└──"*1
-
+            flatten_tree.append(btree.data)
             print("  "*int(level-1)+linker+colored(str(btree.data),top_coder.print_color[level%3]))
         
             if btree.left is not None:
@@ -31,17 +66,32 @@ class top_coder:
                 top_coder.stack.append((btree.right,level))
         
             if len(top_coder.stack)==0:
-                return
+                return flatten_tree
             else:
                 tup=top_coder.stack.pop()
                 btree=tup[0]
                 level=tup[1]
 
+
     def bfs(btree):
+        '''
+        bfs - Traverse the tree "Breadth first" and prints the node. The search is done 
+        using a deque as queue. When a new parent node is hit it pushes the left and right node into 
+        a stack and then popleft the first node and treats it as parent node, this happens in recusive manner 
+        until there is no more node is left.
+        
+        args
+            btree: root node of the binary tree 
+        returns
+            flatten_tree:flatten list from the tree
+        '''
         j=0
+        flatten_tree=list()
         while(btree is not None):
+            flatten_tree.append(btree.data)
             j+=2
             print(str(btree.data))
+            
     
             if btree.left is not None:
                 top_coder.queue.append(btree.left)
@@ -50,9 +100,10 @@ class top_coder:
                 top_coder.queue.append(btree.right)
     
             if len(top_coder.queue)==0:
-                return
+                return flatten_tree
             else:
                 btree=top_coder.queue.popleft()
+
 
     class btree:
         def __init__(self, data=None):
@@ -75,6 +126,13 @@ class top_coder:
                     
     
     def make_tree(list):
+        '''
+        make_tree - takes any list and binary traverse through the list and put them in a balanced 
+        tree. This is a useful for balancing any tree
+        
+        args
+            list: array 
+        '''
         if list is None:
             return None
         else:
