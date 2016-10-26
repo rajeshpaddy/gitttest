@@ -4,9 +4,129 @@ from time import time
 from datetime import datetime as dt
 import random as rand
 import math
+from collections import deque
 error_color="red"
 
 class top_coder:
+    fib_cache = dict()
+    stack = list()
+    queue = deque()
+
+    def bfs(btree):
+        while(btree is not None):
+            print(btree.data)
+        
+            if btree.left is not None:
+                top_coder.stack.append(btree.left)
+        
+            if btree.right is not None:
+                top_coder.stack.append(btree.right)
+        
+            if len(top_coder.stack)==0:
+                return
+            else:
+                btree=top_coder.stack.pop()
+
+    def dfs(btree):
+        j=0
+        while(btree is not None):
+            j+=2
+            print(str(btree.data))
+    
+            if btree.left is not None:
+                top_coder.queue.append(btree.left)
+    
+            if btree.right is not None:
+                top_coder.queue.append(btree.right)
+    
+            if len(top_coder.queue)==0:
+                return
+            else:
+                btree=top_coder.queue.popleft()
+
+    class btree:
+        def __init__(self, data=None):
+            self.data=data
+            self.left = None
+            self.right= None
+
+    def create_bt(list,btreeinstance):
+        if list is None or len(list)==0:
+            return None
+        else:
+            mid=int(len(list)/2)
+            btreeinstance.data=list[mid]
+            btreeinstance.left=top_coder.btree()
+            top_coder.create_bt(list[:mid],btreeinstance.left)
+            if(len(list)>2): # right node is needed only if the array length is > 2 
+                btreeinstance.right=top_coder.btree()
+                top_coder.create_bt(list[mid+1:],btreeinstance.right)
+                    
+    
+    def make_tree(list):
+        if list is None:
+            return None
+        else:
+            btreeinstance = top_coder.btree()
+            top_coder.create_bt(list,btreeinstance)
+            return btreeinstance
+
+
+    def remove_dup_linkedlist(linkedlist):
+        dup_value=dict()
+        head_node = linkedlist.head
+        dup_value[linkedlist.data]=1
+        prev_node = linkedlist.head
+        while (linkedlist.next_node is not None):
+            linkedlist = linkedlist.next_node
+            if linkedlist.data in dup_value:
+                dup_value[linkedlist.data]+=1
+                prev_node.next_node= linkedlist.next_node
+            else:
+                dup_value[linkedlist.data]=1
+                prev_node=prev_node.next_node
+        return head_node
+
+    def create_us_linkedlist(length=100):
+        us_linkedlist = top_coder.linked_list(0)
+        return_item = us_linkedlist.head
+        for i in range(1,length):
+            val=int(rand.random()*i)
+            us_linkedlist.set_next(top_coder.linked_list(val))
+        return return_item
+
+    def print_linkedlist(linkedlist):
+        print (linkedlist.data)
+        while (linkedlist.next_node is not None):
+            linkedlist=linkedlist.next_node   
+            print (linkedlist.data)
+        
+    def replace_space(string,replace_with):
+        l=list(string)
+        print (l)
+        i=0
+        for c in l:
+           if c==" ":
+               l[i]="%20"
+           i+=1
+        
+        return "".join(l)
+
+
+    def is_anagram(string1,string2):
+        return top_coder.sorting.mergesort(list(string1.lower()))==top_coder.sorting.mergesort(list(string2.lower()))
+
+    def string_sort(string):
+        return top_coder.sorting.mergesort(list(string))
+        
+    def get_fib(number):
+        if number<=1:
+            top_coder.fib_cache[number] = 1
+          
+        else:
+            if number not in top_coder.fib_cache:
+                top_coder.fib_cache[number] = top_coder.get_fib(number-1) + top_coder.get_fib(number-2)
+        return top_coder.fib_cache[number]
     
     class sorting:
         glob=0
@@ -123,6 +243,7 @@ class top_coder:
 
         def get_next(self):
             return self.next_node
+            
         
         def get_data(self):
             return self.data
