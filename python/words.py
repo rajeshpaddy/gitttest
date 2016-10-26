@@ -11,23 +11,33 @@ class top_coder:
     fib_cache = dict()
     stack = list()
     queue = deque()
-
-    def bfs(btree):
+    print_color=["magenta","white","cyan"]
+    
+    def dfs(btree):
+        level=0
         while(btree is not None):
-            print(btree.data)
+            if level==0:
+                linker=""
+            else:
+                linker="└──"*1
+
+            print("  "*int(level-1)+linker+colored(str(btree.data),top_coder.print_color[level%3]))
         
             if btree.left is not None:
-                top_coder.stack.append(btree.left)
+                level+=2
+                top_coder.stack.append((btree.left,level))
         
             if btree.right is not None:
-                top_coder.stack.append(btree.right)
+                top_coder.stack.append((btree.right,level))
         
             if len(top_coder.stack)==0:
                 return
             else:
-                btree=top_coder.stack.pop()
+                tup=top_coder.stack.pop()
+                btree=tup[0]
+                level=tup[1]
 
-    def dfs(btree):
+    def bfs(btree):
         j=0
         while(btree is not None):
             j+=2
@@ -56,8 +66,9 @@ class top_coder:
         else:
             mid=int(len(list)/2)
             btreeinstance.data=list[mid]
-            btreeinstance.left=top_coder.btree()
-            top_coder.create_bt(list[:mid],btreeinstance.left)
+            if(len(list)>1):
+                btreeinstance.left=top_coder.btree()
+                top_coder.create_bt(list[:mid],btreeinstance.left)
             if(len(list)>2): # right node is needed only if the array length is > 2 
                 btreeinstance.right=top_coder.btree()
                 top_coder.create_bt(list[mid+1:],btreeinstance.right)
