@@ -1,4 +1,4 @@
-import sys
+    import sys
 from termcolor import colored,cprint
 from time import time
 from datetime import datetime as dt
@@ -13,16 +13,75 @@ class top_coder:
     queue = deque()
     print_color=["magenta","white","cyan"]
     
-    def dfs(btree):
-        level=0
-        while(btree is not None):
-            if level==0:
-                linker=""
-            else:
-                linker="└──"*1
+    def find_missing_numbers(list_of_no):
+	   return_string=””
+	   temp_string=””
+	   last_item=0
+    for i in range(0,100):
+	   last_item=i
+		if i not in list_of_no:
+			if len(temp_string)==0:
+			temp_string=i
+			prev_item=i
+        else:
+            if len(temp_string)>0:
+	           if i!=prev_item+1:
+                  temp_string+	=”-”+prev_item
+		          return_string+=temp_string+”,”
+                  temp_string=””
 
-            print("  "*int(level-1)+linker+colored(str(btree.data),top_coder.print_color[level%3]))
+      if (prev_item==last_item) and prev-item!=temp_string and len(temp_string)>0:
+		         temp_string+	=”-”+prev_item
+	           	 return_string+=temp_string
+	
+       if (prev_item==last_item) and prev_item=temp_string:
+	           temp_string=prev_item
+	           return_string+=temp_string
+	 return return_string	
+
+    
+    def binary_search(btree,data):
+        '''
+        binary_search - searchs a sorted balanced binary tree
         
+        args
+            btree: root of the binary tree
+            data: data to search for
+        returns
+            attempts: # of attempts it took to find the data O(log N)
+        '''
+        attempt=1
+        while btree is not None:
+            if btree.data==data:
+                return ("total attempt",attempt)
+             
+            if btree.data<data: # if the data is greater then search right
+                btree=btree.right
+                print("Right")
+            else:    
+                btree=btree.left #else search left
+                print("Left")
+            attempt+=1
+            print("node:"+str(btree.data))
+                  
+            
+    def dfs(btree):
+        '''
+        dfs - Traverse the tree "Depth first" and prints the node. The 
+        search is done using a list as stack. When a new parent node is hit it 
+        pushes the left and right node into a stack and then pop's the first node 
+        and treats it as parent node, this happens in recusive manner 
+        until there is no more node is left.
+        
+        args
+            btree: root node of the binary tree 
+        '''
+        level=0 # for decorating the output
+        linker="" # for decorating the output
+        flatten_tree=list()
+        while(btree is not None):
+            flatten_tree.append(btree.data)
+            print("  "*int(level-1)+linker+colored(str(btree.data),top_coder.print_color[level%3]))
             if btree.left is not None:
                 level+=2
                 top_coder.stack.append((btree.left,level))
@@ -31,17 +90,33 @@ class top_coder:
                 top_coder.stack.append((btree.right,level))
         
             if len(top_coder.stack)==0:
-                return
+                return flatten_tree
             else:
                 tup=top_coder.stack.pop()
                 btree=tup[0]
                 level=tup[1]
-
+            linker="└──"
+            
+        
     def bfs(btree):
+        '''
+        bfs - Traverse the tree "Breadth first" and prints the node. The search is done 
+        using a deque as queue. When a new parent node is hit it pushes the left and right node into 
+        a stack and then popleft the first node and treats it as parent node, this happens in recusive manner 
+        until there is no more node is left.
+        
+        args
+            btree: root node of the binary tree 
+        returns
+            flatten_tree:flatten list from the tree
+        '''
         j=0
+        flatten_tree=list()
         while(btree is not None):
+            flatten_tree.append(btree.data)
             j+=2
             print(str(btree.data))
+            
     
             if btree.left is not None:
                 top_coder.queue.append(btree.left)
@@ -50,9 +125,10 @@ class top_coder:
                 top_coder.queue.append(btree.right)
     
             if len(top_coder.queue)==0:
-                return
+                return flatten_tree
             else:
                 btree=top_coder.queue.popleft()
+
 
     class btree:
         def __init__(self, data=None):
@@ -75,6 +151,13 @@ class top_coder:
                     
     
     def make_tree(list):
+        '''
+        make_tree - takes any list and binary traverse through the list and put them in a balanced 
+        tree. This is a useful for balancing any tree
+        
+        args
+            list: array 
+        '''
         if list is None:
             return None
         else:
@@ -84,6 +167,17 @@ class top_coder:
 
 
     def remove_dup_linkedlist(linkedlist):
+        '''
+        remove_dup_linkedlist - takes the root node of the linked list and creates a hash
+        tables (dict()) of the node item, if a same node item is found subsequently then the node is 
+        discarded by linking the previous node to the next node. 
+        
+        args 
+            linkedlist
+        return
+            non duplicate linked list
+         
+        '''
         dup_value=dict()
         head_node = linkedlist.head
         dup_value[linkedlist.data]=1
@@ -140,9 +234,29 @@ class top_coder:
         return top_coder.fib_cache[number]
     
     class sorting:
+        '''
+        sorting class implements various sort algorithms like merge sort and quicksort. 
+        For more information refer help(top_coder.sorting)  
+        '''
         glob=0
 
         def mergesort(sortlist):
+            '''
+            mergesort - given a list of items, the merge sort function applies divide and conquer 
+            strategy to sort the list. The division occurs all the way until each of the sub array 
+            has only one element. 
+            
+            Then the merge applies to each combination of the sub array. It compares each element of the 
+            two array and appends the minimum to the original array until all the element of one of the 
+            array is exhausted. Then it loops thru either of the array and appends any remaining item
+            to the original array. This occurs recursively up the chain
+            
+            args
+                unsorted list
+            returns
+                sorted list
+            '''
+            
             if len(sortlist)>1:
                 middle_point = int(len(sortlist)/2)
          
@@ -217,7 +331,15 @@ class top_coder:
                     top_coder.sorting.quicksort_lean(sortlist,left,right)
 
         def quicksort(sortlist):
+            '''
+            quicksort - take an unsorted list and find an arbitary element. Create two sub list as
+            left and right. Compares every element of the original list to the arbitary element and 
+            puts all element smaller than arbitary element in left and rest in right. This happens 
+            recursively until there is only one element in the sub list. 
             
+            Then it merge the left sub list, arbitary element and the right sub list and recursively 
+            return up the chain to get the sorted list
+            '''
             if len(sortlist)==1:
                 
                 return str(sortlist[0])+"-"
@@ -336,10 +458,13 @@ class top_coder:
     def hex_print(size,markers=[],print_color="red"):
         '''
         [linear implementation]
-        this function prints a diagnol hexagon grid and places the markers with in the specified hexagon
+        this function prints a diagnol hexagon grid and places the markers with in the specified 
+        hexagon
         args
         size: the n*n hexagon matrix. 
-        markers: list of string with values on where the markers has to be places. For example ["00v","11h"] will place the v market on the 0,0 cell and h marker on the 1,1 cell 
+        markers: list of string with values on where the markers has to be places. 
+        For example ["00v","11h"] will place the v market on the 0,0 cell and h marker on 
+        the 1,1 cell 
         '''
         
         hex_parts=[" _","/"+colored({0},print_color)+"\\","\\_/"]
