@@ -12,6 +12,7 @@ class top_coder:
     stack = list()
     queue = deque()
     print_color=["magenta","white","cyan"]
+<<<<<<< Updated upstream
     
     def find_missing_numbers(list_of_no):
 	   return_string=””
@@ -65,6 +66,113 @@ class top_coder:
             print("node:"+str(btree.data))
                   
             
+=======
+    phone_array=["0","0","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+    uber_list=set()
+    count=0
+    uber_word_list=set()
+
+    def find_all_words(uber_word,parent=""):
+        return_item=""
+        if len(uber_word)==0:
+            return ""
+        else:
+            for i in list(uber_word):
+                top_coder.count+=1
+                if len(uber_word)==1:
+                    return_item=i
+                    top_coder.uber_word_list.add(i)
+                else:
+                    return_item=top_coder.find_all_words(uber_word[1:],i)    
+                    top_coder.uber_word_list.add(i+return_item)
+                    
+        if parent=="":
+            return_item=top_coder.uber_word_list
+            print(top_coder.count)
+            return return_item
+        else:    
+            return return_item
+
+    def find_all_phone_combination(phone_number,parent=""):
+        
+        return_item = ""
+        # print("Phone Number is {0}   {1}".format(phone_number,len(phone_number)))
+        if len(phone_number)==0:
+            return "" 
+        else:
+            for i in list(top_coder.phone_array[int(phone_number[0])]):
+                top_coder.count+=1 #get a count of total iterations
+                newparent=parent+i;
+                if len(phone_number)==1: 
+                    top_coder.uber_list.add(newparent)
+                else:    
+                    top_coder.find_all_phone_combination(phone_number[1:],newparent)
+        if parent=="":
+            return_item = top_coder.uber_list
+            print (top_coder.count)            
+        return return_item
+
+    def find_start_of_cll(ll):
+        '''
+        The algo is to have two pointers and make one run twice as fast as the other. Where ever they meet that node to start 
+        of circular link list distance is same as the start of link to start of circular link list
+        '''
+
+    def find_nth_fromlast(ll,n):
+        '''
+        trick question to find the nth node from the last. The algo is to have one point move to the nth element
+        and then have both pointers navigate together until the 1st point reaches the end of linked list
+        '''
+        p1=ll
+        p2=ll
+        for i in range(1,n):
+            if (p2.next is not None):
+                p2=p2.next
+            else:
+                break
+        while (p2.next is not None):
+            p1=p1.next
+            p2=p2.next
+        
+        return p1
+        
+    def count_ll_elements(ll):
+        count=0
+        a=ll
+        while(a is not None):
+            count+=1
+            a=a.next
+        return count
+
+
+    class ll:
+        def __init__(self,data = None):
+            self.data=data
+            self.next=None
+        def create_nodes(self,numberof_nodes=5):
+            return_item = self
+            for i in range(1,numberof_nodes):
+                self.next=top_coder.ll(i)
+                self=self.next
+
+            return return_item
+
+    def delete_node(node):
+        '''
+        to delete an arbitary node in linked list is straight forward. Copy the content of the next node to current and the 
+        current node becomes next and next node is discarded
+        '''
+        if (node is None and node.next is None):
+            return 
+        else:
+            n = node.next
+            node.data=n.data
+            node.next=n.next
+
+
+        
+
+>>>>>>> Stashed changes
     def dfs(btree):
         '''
         dfs - Traverse the tree "Depth first" and prints the node. The 
@@ -80,7 +188,15 @@ class top_coder:
         linker="" # for decorating the output
         flatten_tree=list()
         while(btree is not None):
+<<<<<<< Updated upstream
             flatten_tree.append(btree.data)
+=======
+            if level==0:
+                linker=""
+            else:
+                linker="└──"
+
+>>>>>>> Stashed changes
             print("  "*int(level-1)+linker+colored(str(btree.data),top_coder.print_color[level%3]))
             if btree.left is not None:
                 level+=2
