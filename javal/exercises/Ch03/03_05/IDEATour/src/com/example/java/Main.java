@@ -1,5 +1,7 @@
 package com.example.java;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.util.*;
 import java.util.Scanner;
 
@@ -16,13 +18,23 @@ public class Main {
         for (char c1 : c) {
             System.out.println(c1);
         }
-
-        Scanner sc= new Scanner(System.in);
-        String k = sc.nextLine();
-        System.out.println(k+":"+k.length());
         Map<String,String> m = new HashMap<>();
-        m.put("First","Rajesh");
-        m.put("Last","Padmanabhan");
+        Scanner sc= new Scanner(System.in);
+        String k = "start";
+        while (!k.equals("exit"))
+        {
+            k = sc.nextLine();
+            System.out.println(k);
+            if (!k.equals("exit"))
+            {
+                m.put(k,Integer.toString(k.length()));
+
+            }
+            else
+            {
+                break;
+            }
+        }
         System.out.println((m));
     }
 
