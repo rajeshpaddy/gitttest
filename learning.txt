@@ -5,4 +5,4 @@ Clone the git aware prompt project from https://github.com/jimeh/git-awawikire-p
 Set up the variables metioned in the above link in /etc/environment (This is the profile file that runs when the terminal is started first time)
 
 
-
+Test
