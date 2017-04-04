@@ -1,0 +1,9 @@
+Customer Segment - Understanding of customers and grouping customers into different segement based on their needs and behaviour. 
+Value proposition - What is the customer problem that this solution is solving and does customer realize its value. What are the values. 
+Key resources - What are the key resources needed to realize the value proposition. 
+Key activities - What are the key activities that needs to be performed to realize the value proposition
+Key partners - Who are all the key partners that we need to work with to realize the value proposition
+Customer Realtionship - What are the way we will establish customer realtionship and how do we maintain and develop those customer relationship
+Channel - What are all the different channels thru which we will engage with the customers. Includes all aspects of engagement - Marketing, Sales 
+Revenue Stream - What are all the possible revenue stream when the value proposition is realized
+Cost Structure - What is the cost structure of the value prop. Understanding of the cost structure is super important because it will help drive down profitabliity. 
