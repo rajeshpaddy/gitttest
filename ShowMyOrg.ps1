@@ -12,8 +12,12 @@ $wc.UseDefaultCredentials = $true;
 
 [string] $FTE_COLOR ="blue"
 [string] $VENDOR_COLOR = "red"
+[string] $SUMMARY_COLOR = "Green"
 [string] $DELIMITER_TOKEN =";"
 [string] $VENDOR_IDENTIFIER_TOKEN="[v-]"
+[int] $vendor_count=0
+[int] $FTE_count=0
+[int] $OPEN_count=0
 
 try
 {
@@ -32,18 +36,28 @@ if ($exception_occured -ne $true)
     {
         ForEach ($dc in $doc.GetElementsByTagName("DirectsChain"))
         {
+            #for manager
             if ($dc.GetElementsByTagName("Manager").GetElementsByTagName("VendorWorker").InnerText -eq "false")
             { 
                 $host.UI.RawUI.ForegroundColor = $FTE_COLOR
                 Write-Output($dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText +"("+$dc.GetElementsByTagName("Manager").GetElementsByTagName("Alias").InnerText+")")
+                
+                if (($dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText -like "*OPEN*"))
+                {
+                    $OPEN_count++
+                }
+                else
+                {
+                    $FTE_count++
+                }
             }
             else
             {
                 $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR
                 Write-Output($dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText +"("+$dc.GetElementsByTagName("Manager").GetElementsByTagName("Alias").InnerText+")" +$VENDOR_IDENTIFIER_TOKEN)
-                
+                $vendor_count++
             }
-
+            #for directs
             if ($dc.GetElementsByTagName("Manager").GetElementsByTagName("TotalReports").InnerText -ne 0)
             {
                 foreach ($dd in $dc.GetElementsByTagName("DirectData"))
@@ -51,13 +65,21 @@ if ($exception_occured -ne $true)
                     if ($dd.GetElementsByTagName("VendorWorker").InnerText -eq "false") 
                     {
                         $host.UI.RawUI.ForegroundColor = $FTE_COLOR
-                    Write-Output("    -"+$dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")") 
-                    
+                        Write-Output("    -"+$dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")") 
+                        if (($dd.GetElementsByTagName("FullName").InnerText -like "*OPEN*"))
+                        {
+                            $OPEN_count++
+                        }
+                        else
+                        {
+                            $FTE_count++
+                        }
                     }
                     else
                     {
                     $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR   
-                    Write-Output("    -"+$dd.GetElementsByTagName("FullName").InnerText+"(v-)")
+                    Write-Output("    -"+$dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")"+"(v-)")
+                    $vendor_count++
                     }
                 }
             }
@@ -68,33 +90,62 @@ if ($exception_occured -ne $true)
     {
         ForEach ($dc in $doc.GetElementsByTagName("DirectsChain"))
         {
+            #for manager
             if ($dc.GetElementsByTagName("Manager").GetElementsByTagName("VendorWorker").InnerText -eq "false")
             {
                 $host.UI.RawUI.ForegroundColor = $FTE_COLOR
                 $lineContent= $dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText +"("+$dc.GetElementsByTagName("Manager").GetElementsByTagName("Alias").InnerText+")"
+                if (($dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText -like "*OPEN*"))
+                {
+                    $OPEN_count++
+                }
+                else
+                {
+                    
+                    $FTE_count++
+                }
             }
             else 
             {
                 $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR
                 $lineContent= $dc.GetElementsByTagName("Manager").GetElementsByTagName("FullName").InnerText +"("+$dc.GetElementsByTagName("Manager").GetElementsByTagName("Alias").InnerText+")" +$VENDOR_IDENTIFIER_TOKEN
+                $vendor_count++
             }
+            #for directs
             if ($dc.GetElementsByTagName("Manager").GetElementsByTagName("TotalReports").InnerText -ne 0)
             {
                 foreach ($dd in $dc.GetElementsByTagName("DirectData"))
                 {
                     if ($dd.GetElementsByTagName("VendorWorker").InnerText -eq "false") 
                     {
-                    $host.UI.RawUI.ForegroundColor = $FTE_COLOR
-                    $lineContent=$lineContent+$DELIMITER_TOKEN+$dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")"
+                        $host.UI.RawUI.ForegroundColor = $FTE_COLOR
+                        $lineContent=$lineContent+$DELIMITER_TOKEN+$dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")"
+                        if (($dd.GetElementsByTagName("FullName").InnerText -like "*OPEN*"))
+                        {
+                            $OPEN_count++
+                        }
+                        else
+                        {
+                            $FTE_count++
+                        }
                     }
                     else
                     {
                     $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR   
                     $lineContent = $lineContent +$DELIMITER_TOKEN+ $dd.GetElementsByTagName("FullName").InnerText+"("+$dd.GetElementsByTagName("Alias").InnerText+")"+$VENDOR_IDENTIFIER_TOKEN
+                    $vendor_count++
                     }
                 }
             }
             Write-Output ($lineContent+$DELIMITER_TOKEN)
         }
     }
+
 }
+    $host.UI.RawUI.ForegroundColor = $SUMMARY_COLOR
+    Write-Output ("--------------------------------------------------------------------")
+    $host.UI.RawUI.ForegroundColor = $FTE_COLOR
+    Write-Output ([string]::Format("Total FTE - {0}",$FTE_count))
+    Write-Output ([string]::Format("Total OPEN - {0}",$OPEN_count))
+    $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR   
+    Write-Output ([string]::Format("Total Vendor - {0}",$vendor_count))
