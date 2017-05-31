@@ -1,1 +1,25 @@
+coding
 Given an array of integers, find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers   
+determine whether a given binary tree is a binary search tree.   
+BST traversal
+Practice Leetcode
+Given a string 'alphabet' and a string 'codex' find the shortest substring in codex that contains all characters in alphabet
+
+
+
+
+
+https://msit.powerbi.com/groups/441ede00-d68a-4855-869b-17c78cab532f/reports/3d5e1a7c-358f-429d-b4bb-5f33f6d3477a/ReportSection 
+Supplement
+
+Melissa to filter https://msit.powerbi.com/groups/441ede00-d68a-4855-869b-17c78cab532f/reports/0cbd2927-dae0-4594-8539-2025a9d9e975/ReportSection to a second page that excludes MSIT. Then service teams to help drive scanning coverage
+ improvement. Use https://osgwiki.com/wiki/WDG_TVM_Onboarding for some guidance.
+
+
+
+
+
+
+
+design
+One of several design questions was to design a website to accept a long URL and provide a shorted URL.

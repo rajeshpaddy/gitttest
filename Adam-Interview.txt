@@ -1,0 +1,47 @@
+
+
+Intro - I think i find most intriguing is AI, Algo and complicated and machine vision. XBox kinet API and heaurustic analysis and dynamic poses. 
+YMCA dance composition. Also took a machine learning class. Little bit of analysis and i took the data. 
+
+How do you see the industry evolve in next 5 years. They are more prevalant than we think. Cortana and Siri are applying learning Algo
+
+You phone is identifying your purchasinghabit and consuming habit and be able to give suggestion on how purchasing choice and 
+in alignment. 
+
+People who are successful that success is in technology. 
+
+Military - deployment system is man. Traffic route and travelling sales 
+
+Event planning 
+
+Profit margin
+
+Forecasting
+
+Sales and Marketing scenarios. 
+
+Lot of automation. 
+
+I asked him is AI, machine learning and big data has high correlation with making the services more reliable. 
+
+They do try to have a flexible load. Big data could be used to get heaviest load time and predictable access patterns and inadvance predict the load. 
+They would then be prepared for the spike. Which increase reliability and performance. 
+There are certain organization intentionally target sercies and knowck them out. Big data security analysis can identify traditional and non traditional ussage 
+traffic pattern and flag them. When non traditional pattern hit a threashold. Certain action could be taken -Temporary restriction on the IP address, 
+blacklist structure, Some thing along the line of preventing access for a time duration. 
+
+usage statistics and log of  patters of logon. Identoify the usage pattern. That data is reporting to the service so its behaviour can change. 
+
+Machine learning and various algorithm. I train those algorithm that they produce output that are highly accurate. 
+
+AI makes a decision based on the output produced by the machine learning.  The service can make a choice and respond with appropriate behaviour. 
+
+I asked which area is of interest to him. Applying Big data, Machine learning and AI in a specific area or 
+Improving the Machine LEarning and AI domain , research and improve the expansion of the domain.   
+He is interested in both of them. 
+
+Just 2 of 
+
+Host his own minecraft server. 
+
+
