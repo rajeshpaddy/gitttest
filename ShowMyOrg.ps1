@@ -3,16 +3,18 @@
 # Input - ShowMyOrg.ps1 <alias> <switches> 
 # Output - Manager and Directs in human readable format
 # <switches< - -h for human redable format -m for machine readable format
+# list of foreground colors are available in https://technet.microsoft.com/en-us/library/ff406264.aspx
 $uri=[string]::Format("http://who/Data/PersonContext/{0}.xml",$args[0] )
 [System.Net.WebClient] $wc = New-Object System.Net.WebClient
 $switch = $args[1]
 $wc.UseDefaultCredentials = $true;
 [boolean]$exception_occured= $false
-[string] $FTE_COLOR ="blue"
-[string] $VENDOR_COLOR = "red"
+[string] $FTE_COLOR ="cyan"
+[string] $VENDOR_COLOR = "Yellow"
 [string] $SUMMARY_COLOR = "Green"
 [string] $DELIMITER_TOKEN =";"
 [string] $VENDOR_IDENTIFIER_TOKEN="[v-]"
+[string] $DEFAULT_FOREGROUND_COLOR = $host.UI.RawUI.ForegroundColor
 [int] $vendor_count=0
 [int] $FTE_count=0
 [int] $OPEN_count=0
@@ -25,6 +27,33 @@ Catch
     $exception_occured = $true
     $host.UI.RawUI.ForegroundColor = "red"
     Write-Output ([string]::Format("ERROR::: Check if  valid alias -->{0} is entered :: {1}",$args[0],$_.Exception.Message))
+}
+
+if ([string]::IsNullOrEmpty($switch))
+{
+    Write-Output ("NAME")
+    Write-Output ("`t ShowMyOrg")
+    Write-Output ("SYNTAX")
+    Write-Output ("`t ShowMyOrg [Alias] <string> [Switches: -h human readable, -m machine readable -s single person information] ")
+    Write-Output ("`t Examples: ")
+    Write-Output ("`t `t 1) ShowMyOrg Toddba -h --> Shows human readable org of Toddba and his directs")
+    Write-Output ("`t `t 2) ShowMyOrg Toddba -m --> Shows machine readable org of Toddba and his directs")
+    Write-Output ("`t `t 3) ShowMyOrg Toddba -s --> Shows information for Toddba")
+    Write-Output ("`t `t 4) ShowMyOrg Toddba    --> Shows machine readable org of Toddba and his directs")
+    Write-Output ("`t `t 5) ShowMyOrg Toddba    --> Shows usage of this command") 
+    exit
+}
+if ($switch -eq "-s")
+{
+    $person = $doc.GetElementsByTagName("Person")[0]
+    Write-Output([string]::Format("Name - {0}",$person.Name))
+    Write-Output([string]::Format("Alias  - {0}",$person.Alias))
+    Write-Output([string]::Format("Office - {0}",$person.Office))
+    Write-Output([string]::Format("Department - {0}",$person.Department))
+    Write-Output([string]::Format("ManagerFullName - {0}",$person.ManagerFullName))
+    Write-Output([string]::Format("FullTimeReports - {0}",$person.FullTimeReports))
+    Write-Output([string]::Format("ImageLink - {0}",$person.ImageLink))
+    exit
 }
 if ($exception_occured -eq $false)
 {   
@@ -107,3 +136,4 @@ Write-Output ([string]::Format("Total FTE - {0}",$FTE_count))
 Write-Output ([string]::Format("Total OPEN - {0}",$OPEN_count))
 $host.UI.RawUI.ForegroundColor = $VENDOR_COLOR   
 Write-Output ([string]::Format("Total Vendor - {0}",$vendor_count))
+$host.UI.RawUI.ForegroundColor = $DEFAULT_FOREGROUND_COLOR
