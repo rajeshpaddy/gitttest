@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+
+  <head>
+      <title>hcal test</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="normalize.css">
+      <link rel="stylesheet" href="../src/hcal.css">
+  </head>
+
+  <body>
+    <div id="content">
+    </div>
+    
+    <script src="jquery.min.js"></script>
+    <script src="../src/hcal.js"></script>
+    <script>
+      $(document).ready(function () {
+        var dates = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25, 26, 27, 28];
+	var marketpos={"0":"1","1":"1","4":"1","6":"1","13":"2","22":"1","24":"1"};
+        var $hcal = $('#content').hcal(dates, marketpos, 'Monday, July 03rd 2017 - Friday, July 28th 2017', 'us');
+        
+        $hcal.addHcalAppointment(1, 2, 'Go to the barber', 'Barbers place', 'Do not forget this!', 2);
+        $hcal.addHcalAppointment(8, 2, 'Go to school', 'School', 'Learn some cool stuff', [154,123,165]);
+        $hcal.addHcalAppointment(20, 3, 'Meet Cindy', 'Cindy\'s home', ';-)', 4);
+      });
+    </script>
+    
+  </body>
+
+</html>
