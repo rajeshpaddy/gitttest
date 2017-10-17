@@ -1,0 +1,56 @@
+{
+/*
+	// Place your snippets for PowerShell here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+
+"Write to Host": {
+	"prefix": "Output",
+	"body": [
+		"Write-Output($1);",
+		"$2"
+	],
+	"description": "Write output to console"
+}
+,
+"For each": {
+	"prefix": "for-each",
+	"body": [
+		"foreach($1 in $2){",
+			"$3",
+			"};"
+	],
+	"description": "for each loop"
+},
+
+"Is Null or Empty": {
+	"prefix": "isnull-empty",
+	"body": [
+		"[$1string]::IsNullOrEmpty($2)"
+	],
+	"description": "is null or empty"
+},
+
+
+
+"Invoke Expression": {
+	"prefix": "invoke-exp",
+	"body": [
+		"Invoke-Expression -Command  $1<$cmd>"
+	],
+	"description": "Invoke a cmd expression from with in power shell"
+},
+
+
+}
