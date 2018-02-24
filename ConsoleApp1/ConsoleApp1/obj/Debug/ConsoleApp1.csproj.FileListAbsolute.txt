@@ -1,7 +1,0 @@
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
-c:\users\anira\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
