@@ -1,0 +1,5 @@
+docker build -t my-prometheus .
+docker run -p 9090:9090 --net "default" my-prometheus
+netsh http add urlacl url=http://+:1234/metrics user=DOMAIN\user
+docker exec -u 0 -it 45d987c133b3  ping 172.17.0.2
+Wget to run a url, light weight in comparision to curl
