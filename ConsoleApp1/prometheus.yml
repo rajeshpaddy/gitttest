@@ -1,0 +1,50 @@
+--- 
+global: 
+  evaluation_interval: 3s
+  external_labels: 
+    foo: bar
+    monitor: codelab
+  scrape_interval: 3s
+rule_files: 
+  - rule_files.yml
+scrape_configs: 
+  - 
+    file_sd_configs: 
+      - 
+        files: 
+          - foo/*.slow.json
+          - foo/*.slow.yml
+          - single/file.yml
+        refresh_interval: 10m
+      - 
+        files: 
+          - bar/*.yaml
+    honor_labels: true
+    job_name: prometheus
+    relabel_configs: 
+      - 
+        regex: "(.*)some-[regex]"
+        replacement: "foo-${1}"
+        source_labels: 
+          - job
+          - __meta_dns_name
+        target_label: job
+      - 
+        source_labels: 
+          - abc
+        target_label: cde
+      - 
+        replacement: static
+        target_label: abc
+      - 
+        regex: ~
+        replacement: static
+        target_label: abc
+    static_configs: 
+      - 
+        labels: 
+          my: label
+          your: label
+        targets: 
+          - "localhost:9090"
+          - "docker.for.win.localhost:1233"
