@@ -23,6 +23,17 @@ namespace ConsoleApp2
             Console.ReadKey();
         }
 
+        public IEnumerable<int> listobject()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                //Console.WriteLine("Inside method");
+                yield return i;
+
+            }
+
+        }
+
     }
     class Program
     {
@@ -59,6 +70,16 @@ namespace ConsoleApp2
                     Indexer i = new Indexer();
                     i.name = "The quick brown fox jumps over the lazy little dog";
                     Console.WriteLine(i[4]);
+                    Console.ReadKey();
+                    break;
+                case '5':
+                    Console.WriteLine("Yield example");
+                    Indexer l = new Indexer();
+                    foreach (int k in l.listobject())
+                    {
+                        Console.WriteLine(k);
+
+                    }
                     Console.ReadKey();
                     break;
             }
