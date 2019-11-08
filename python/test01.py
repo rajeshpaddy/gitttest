@@ -5,8 +5,12 @@ import logging
 
 def ET(func):
     def wrapper():
+        logger = logging.getLogger("ET")
+        
+        # logger.setLevel(logging.DEBUG)
         start=perf_counter()        
         func()
         end = perf_counter()
-        logging.info("<<"+ str(datetime.now()) + ">>Elapsed time of method " + func.__name__ + ":" + str( (end-start)*1000) +  " Milliseconds " )
+        logger.info( "Elapsed time of method " + str( (end-start)*1000) +  " Milliseconds " )
+        logger.debug("debug code")
     return wrapper
