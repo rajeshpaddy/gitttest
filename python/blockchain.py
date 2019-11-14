@@ -49,6 +49,9 @@ while True:
 with open('blockchain.data','wb') as filehandle:
 	pickle.dump(jsonpickle.encode(blockchain,unpicklable=False),filehandle)
 
+with open('blockchain.json','w') as jsonfilehandle:
+	json.dump(jsonpickle.encode(blockchain,unpicklable=False),jsonfilehandle,indent=4)
+
 print(len(blockchain))
 
 for block in blockchain:
