@@ -1,0 +1,24 @@
+<html>
+<head>
+    <script src="https://github.com/mauriciosantos/Buckets-JS/releases/download/v1.98.2/buckets.min.js" ></script>
+    <script src="js/datastructure.js"></script>
+</head>
+<body>
+    <div>   
+        <select name="datastructures" id="ds" >
+            <option value="Stack">Stack</option>
+            <option value="Queue">Queue</option>
+        </select>
+        <br>
+        <input id="names" width="100"/>
+        <button type="button"  onclick="pushMe()">Push</button>
+        <button type="button" onclick="popMe()">Pop</button>
+        <button type="button"  onclick="queueMe()">Queue</button>
+        <button type="button" onclick="dequeueMe()">Dequeue</button>
+        <ul id="listitems-stack">
+        </ul>
+        <ul id="listitems-queue">
+        </ul>
+    </div>
+</body>
+</html>
